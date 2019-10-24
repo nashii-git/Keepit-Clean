@@ -1,39 +1,38 @@
-
 // Keepit-Clean - a simple Discord bot created by Alex P. (@acryllect)
+// Improved by Nashii#0001 @ Discord | nemdev_ @ Twitter
 
-const Discord = require("discord.js");
-const bot = new Discord.Client
-const client = new Discord.Client();
+let Discord = require("discord.js");
+let client = new Discord.Client();
 
-// Setup
+let prefixes = [
+	"!",
+	"?",
+	"-"
+];
 
-const prefix = "!"; // The prefix of the bot's commands you want to delete
-const chatChannelID = "PASTE-HERE"; // Right-click the channel (usually #general) and click "Copy ID" on Discord then paste it in the brackets
-const botChannelID = "PASTE-HERE"; // Right-click the channel (usually #bot-commands) and click "Copy ID" on Discord then paste it in the brackets
-const botID = "PASTE-HERE"; // Right-click the bot (for example: Rythm) and click "Copy ID" on Discord then paste it in the brackets
+const token = "STRING_TOKEN";
 
-client.login("token"); // Paste your bot token, *NOT* the botID, in the brackets (check README.md for details on this)
-
-client.once('ready', () => {
-	console.log('Ready!');
-});
-
-// This is the code that manages the channel you *DON'T*  want people to use the bot in. If a message is by or for the bot, it gets deleted.
+/* Function to check if an array has the value passed*/
+function check(value, arrayofvalues) {
+  return arrayofvalues.indexOf( value ) == -1;
+}
 
 client.on('message', message => {
-  if (message.channel.id === "chatChannelID"){
-    if (message.content.startsWith(prefix)) message.delete();
-    else if (message.author.id === "botID") message.delete();
-    else return;
-  };
+  try 
+  {
+     const characters = message.split('');
+     /* Split by chars*/
+     if(message.author.bot /* If the author is a boy*/ && /* and */ check(characters[0], prefixes)) /* The first character is a prefix */){
+         message.delete(); /* Delete the message */
+     }  
+  }
+  catch (...)
+  {
+      console.error("Exception catched\n");
+  }
+  /* 
+  TODO: Add a check to see if it has permissions to delete the message 
+  */
 });
 
-// This is the code that manages the channel *ONLY* for bot commands. Other messages will be deleted.
-
-  client.on('message', message => {
-    if (message.channel.id === "channelID"){
-      if (message.content.startsWith(prefix)) return;
-      else if (message.author.id === "botID") return;
-      else message.delete();
-    };
-  });
+client.login("token");
