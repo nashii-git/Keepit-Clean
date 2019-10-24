@@ -1,3 +1,7 @@
+# Credits
+Original Creation by Alex P. @ Twitter
+Rewrite by nemdev_ @ Twitter | Nashii#0001 @ Discord
+
 # Keepit-Clean
 A simple, noob-friendly Discord bot to keep your chat clear from bot commands
 
@@ -15,4 +19,3 @@ Once the process is complete, run `npm install discord.js`. Your folder should n
 ![image not found](https://i.imgur.com/fKexxwo.png) </br>
 Next, open `index.js` in your text editor of choice and follow the instructions there (added as comments). </br>
 - Note: your bot token is found under the "bot" section on the Discord developer portal. </br>
-
